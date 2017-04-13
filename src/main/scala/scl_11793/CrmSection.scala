@@ -7,7 +7,7 @@ import scl_11793.Couple.EditorMaker
 abstract class CrmSection() {
  val model = GlobalModel
  private val couples: scala.collection.mutable.ListBuffer[FieldCouple[_]] = new scala.collection.mutable.ListBuffer[FieldCouple[_]]
- private val dirtListener: () => Unit = () => model.setDirty(couples.exists(_.dirty))
+ private val dirtListener = () => model.setDirty(couples.exists(_.dirty))
  model.addModeListener(st => {
   dirtListener()
    couples.foreach(_.abandonEdits())
